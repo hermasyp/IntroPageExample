@@ -28,13 +28,20 @@ class FormFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnSubmit.setOnClickListener {
-            listener.onNameSubmitted(binding.etPlayerName.text.toString())
+            //do navigate to x
+            if(this::listener.isInitialized){
+                listener.onNameSubmitted(binding.etPlayerName.text.toString())
+            }
         }
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        listener = (context as FormFragmentListener)
+        //casting
+        if(context is FormFragmentListener){
+            listener = context
+        }
+        //else, do nothing
     }
 
 }

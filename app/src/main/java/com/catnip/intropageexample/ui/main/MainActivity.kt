@@ -1,9 +1,11 @@
 package com.catnip.intropageexample.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import com.catnip.intropageexample.R
 import com.catnip.intropageexample.databinding.ActivityMainBinding
@@ -14,12 +16,12 @@ import com.catnip.intropageexample.utils.views.ViewPagerAdapter
 
 class MainActivity : AppCompatActivity(),FormFragmentListener {
     private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         bind()
         initViewPager()
-
     }
 
     private fun bind() {
@@ -56,7 +58,7 @@ class MainActivity : AppCompatActivity(),FormFragmentListener {
         binding.vpIntro.apply {
             adapter = fragmentAdapter
         }
-        binding.vpIntro.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        binding.vpIntro.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
             override fun onPageSelected(position: Int) {
                 when {
                     position == 0 -> {
@@ -64,7 +66,6 @@ class MainActivity : AppCompatActivity(),FormFragmentListener {
                         binding.tvNext.isEnabled = true
                         binding.tvPrevious.visibility = View.INVISIBLE
                         binding.tvPrevious.isEnabled = false
-
                     }
                     position < fragmentAdapter.itemCount - 1 -> {
                         binding.tvNext.visibility = View.VISIBLE
