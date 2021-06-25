@@ -1,5 +1,5 @@
-#Binar Challenge 5
+# Binar Challenge 5
 
-##List of Feature :
+## List of Feature :
 - Game
 - support multiple language (indo, english)
